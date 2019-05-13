@@ -1,0 +1,118 @@
+//Prova 01
+#include<iostream>
+#include<stdlib.h>
+#include<string>
+#include<locale.h>
+#include<time.h>
+
+using namespace std;
+
+class Conta{
+	private:
+		int pop, cot, popCot, id;
+		
+	public:
+		string  numConta, agencia, lim,nomeGer; 
+		float  n, j,m, emp, empT, saldo, limiteT;
+		int  idGer;
+	public:
+		
+	float defLim(float){
+	
+	if ((saldo >= 1.500)&&( saldo <1.750 ))
+	{
+    limiteT = saldo*0.2+saldo; //VALOR DO limite
+    printf("\nValor do Aumento em 20% para limite : \n%f",limiteT);
+	}
+	else if ((saldo>=1.750)&&(saldo<2.000))
+	{
+    limiteT= saldo*0.4+saldo; //VALOR DO lIMITE
+    printf("\nValor do Aumento em 40% para limite: \n%f",limiteT);
+	}
+	else if (saldo>=2.000)
+	{
+    limiteT= saldo*0.5 + saldo; //VALOR DO Limite
+    printf("\nValor do Aumento em 50 % para limite : \n%f", limiteT);
+	}
+    return (limiteT);
+	}
+		int defId()
+		{
+ 		srand(time(NULL));
+
+ 		id = rand();
+ 		
+		 
+		 printf ("Numero Identificacao Conta :  %d\n", id); 
+		 return(id);
+		}
+		int defIdGerente(){
+		
+
+ 		srand(time(NULL));
+
+ 		idGer = rand();
+		 
+		 printf ("Numero Identificacao Gerente :  %d\n", idGer); 
+		 return(idGer);
+		
+		}
+		string defGerente(){
+			cout << "\n Informe nome Gerente autorizado sua conta : \n ";
+			fflush(stdin);
+			getline(cin, nomeGer);
+			return(nomeGer);
+		}
+		double defEmp(){
+			
+			
+			printf("limite da Conta : \n %d", defLim());
+			cout << " \n Informe Valor total emprestimo :";
+			cin >> emp;
+			cout << " \n Informe quantidade de parcelas :";
+			cin >> m;
+			if(emp <= defLim())
+			{
+			if(emp <= 1000)
+			{
+				j= emp*0.23*m;
+				empT = emp+j; 
+			}
+			else if (emp <= 2000)
+			 {			
+			 j= emp*0.40*m;
+			 empT = emp+j; 
+			 }
+			 else if(emp > 8000)
+			 {
+			 j= emp*0.60*m;
+			 empT = emp+j; 
+			 }
+			 
+			}
+			else{
+				printf("Emprestimo Recusado || Procure Gerente para verificar limite total");
+			}
+			return(empT);
+
+			
+		}
+		};
+		
+		main()
+		{
+			Conta c1;
+			
+		 	
+			float a=c1.defEmp();
+			cout << "\n Informe saldo :";
+			cin >> saldo;
+			float f=c1.defLim(saldo);
+			fflush(stdin);
+			printf("saldo Total : \n %d",saldo);
+
+			cout << "Valor total limite : %f", f;
+			cout << "Valor Emprestimo Total : %f ",	a;
+			
+			
+		}
