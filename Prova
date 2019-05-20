@@ -13,8 +13,8 @@ class Conta{
 		
 	public:
 		string  numConta, agencia, lim,nomeGer, cliente; 
-		float  n, j,m, emp, empT, saldo, limiteT,cc,cp, max;
-		int  idGer;
+		float  n, j, emp, empT, saldo, limiteT,cc,cp, max;
+		int  idGer,m;
 	public:
 		
 	float defLim(float){
@@ -54,21 +54,13 @@ class Conta{
 
  		idGer = rand();
 		 
-		 cout << "Numero Identificacao Gerente :  %d\n", idGer;
+		
 		 
 		 return(idGer);
 		
 		}
-		string defGerente(){
-			cout << "\n Informe nome Gerente autorizado sua conta : \n ";
-			fflush(stdin);
-			getline(cin, nomeGer);
-			return(nomeGer);
-		}
-		double defEmp(float){
+		float defEmp(float, int){
 			
-			if(emp <= max)
-			{
 			if(emp <= 1000)
 			{
 				j= emp*0.23*m;
@@ -85,7 +77,6 @@ class Conta{
 			 empT = emp+j; 
 			 }
 			 
-			}
 			else{
 				printf("Emprestimo Recusado || Procure Gerente para verificar limite total");
 			}
@@ -96,49 +87,57 @@ class Conta{
 		int verificarTipo(){
 				
 				int op;
-				cout << "Informe tipo de conta : | 1 | Corrente \t | 2 | Poupanca";
+				cout << "Informe tipo de conta : | 1 | Corrente \t | 2 | Poupanca \n";
 				cin >> op;
-				switch(op)
-				{
-					case 1:
-						cout << "|| Conta Corrente || ";
-						
-						break;
-					case 2:
-						cout << "|| Conta Poupança ||";
-						
-						break;
-						default:
-							cout << " INCORRETO ";
-				}
-				return (cot);
+				return (op);
 		}
 		};
 		
 		main()
 		{
 			Conta c1;
+			int tipoC, g, gerente;
+			struct gerenteS{ string nome, email, usuario;
+			int senha,g;
 			
-			cout << "Valor requisitado Emprestimo  : ";
-			cin >> max;
-			float max=c1.defEmp(float);
-			cout << "Emprestimo total : %f ", max;
+			};
 			
-			/*
-			cout << "Valor total limite : %f", f;
-			cout << "\n Informe saldo :";
-			cin >> saldo;
-			float f=c1.defLim(saldo);
+			
+			//Gerente 
+			
+			gerenteS gerente[3];
+			
+			gerente[0].g=c1.defIdGerente();
+			cout << "\n Numero Identificacao Gerente : \n " << gerente[0].g;
+			cout < " \n Nome Gerente : \n ";
+			getlne(cin,gerente[0].nome);
+			cout << "informe Email - Gerente\n ";
+			getline(cin, gerente[0].email);
 			fflush(stdin);
-			printf("saldo Total : \n %d",saldo);
-
+			cout << "Usuario : \n ";
+			gerente[0].usuario;
+			cout << " Senha : \n";
+			gerente[0].senha;
 			
 			
-			printf("limite da Conta : \n %d");
-			cout << " \n Informe Valor total emprestimo :";
-			cin >> emp;
-			cout << " \n Informe quantidade de parcelas :";
-			cin >> m;
-			cout << "Numero Identificacao Conta :  %d\n", id;
-			*/
+			
+			
+			tipoC=c1.verificarTipo();
+			if(tipoC==1)
+			{
+				cout << "\n CONECTADO A CONTA CORRENTE \n";
+			}
+			else if(tipoC==2)
+			{
+				cout << "\n CONECTADO A CONTA POUPANÇA";
+			}
+			c1.emp;
+			cout << "\n Valor requisitado Emprestimo  : ";
+			cin >> c1.emp;
+			cout << "\n Quantidade de Mes :";
+			cin >> c1.m;
+			c1.empT=c1.defEmp(c1.emp,c1.m);
+			cout << "\n Emprestimo total : " << c1.empT;
+			fflush(stdin);
+			
 		}
