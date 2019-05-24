@@ -7,18 +7,21 @@
 
 using namespace std;
 
+//Class Conta
 class Conta{
+	
 	private:
 		int pop, cot, popCot, id;
-		
+		//informacoes nao herdada, pois sao restritas para classe conta
 	public:
+		//seram herdadas pelas demais classes
 		string  numConta, agencia, lim,nomeGer, cliente; 
 		float  n, j, emp, empT, saldo, limiteT,cc,cp, max;
 		int  idGer,m;
 	public:
 		
 	float defLim(float){
-	
+	//fornecer ao usuario qual limite total
 	if ((saldo >= 1.500)&&( saldo <1.750 ))
 	{
     limiteT = saldo*0.2+saldo; //VALOR DO limite
@@ -38,7 +41,7 @@ class Conta{
 	}
 	
 	int defId()
-	
+		//dar valor de id para conta usuario
 		{
  		srand(time(NULL));
 
@@ -46,7 +49,7 @@ class Conta{
  		
 		 return(id);
 		}
-		
+		// dar um valor de id para gerente
 		int defIdGerente(){
 		
 
@@ -59,6 +62,7 @@ class Conta{
 		 return(idGer);
 		
 		}
+		//Definir pelo emprestimo fornecido do usuario qual sera o valor total do emprestimo
 		float defEmp(float, int){
 			
 			if(emp <= 1000)
@@ -84,6 +88,7 @@ class Conta{
 
 			
 		}
+		// verificar com o usuario qual tipo de conta, salva num em op;
 		int verificarTipo(){
 				
 				int op;
@@ -92,35 +97,94 @@ class Conta{
 				return (op);
 		}
 		};
+		class Titular : public Conta{
+			// herança nas variaveis puublicas da Classe Conta
+			
+			
+			public:
+			int deposito, trans;
+			float credito, debito, extra, saques, st;
+			Conta cC;
+			public :
+				// definir credito cliente
+				//uso variavel herdada Conta
+			float	mCredito(limiteT,saldo){
+					if(c1.saldo <= 100)
+					{
+						credito = limiteT*0.2;
+					}
+					else if(saldo <= 2000)
+					{
+						credito = limiteT*0.5;
+					}
+					else if(saldo <= 5000)
+					{
+						credito =limiteT*0.8;
+					}
+					return (credito);
+				}
+				//Definir debito
+				//variavel saldo herdada de conta
+			float	dDebito(saldo){
+					if(saldo==0)
+					{
+						debito=0;
+					}
+					else{
+						debito=saldo;
+					}
+					return(debito);
+				}
+			float	fSaques(saques, saldo){
+					//st = variavel recenbendo saldo total
+					//funcao saque de dinheiro
+					st = saques-saldo;
+					return(st);
+				}
+			// Funçao receber deposito e definir saldo total
+			int	dDeposito(deposito,saldo){
+					st = depoisto + saldo;
+					return(st);
+				}
+		};
+		
 		
 		main()
 		{
+			Titular t1;
 			Conta c1;
 			int tipoC, g, gerente;
 			struct gerenteS{ string nome, email, usuario;
-			int senha,g;
+			int senha,g, def;
+			float saldoMain;
 			
 			};
-			
-			
-			//Gerente 
-			
+			//Entrada do Programa
+			cout << "Bem - vindo BANCO";
+		 	system("pause");
+			cout << "\n \t Gerente 1 || \t Titular 2 || \t sair - 0";
+			cin >> def;
+			switch(def){
+				case 1:
+					{		
 			gerenteS gerente[3];
 			
-			gerente[0].g=c1.defIdGerente();
+			gerente[i].g=c1.defIdGerente();
 			cout << "\n Numero Identificacao Gerente : \n " << gerente[0].g;
 			cout < " \n Nome Gerente : \n ";
-			getlne(cin,gerente[0].nome);
+			getlne(cin,gerente[i].nome);
 			cout << "informe Email - Gerente\n ";
-			getline(cin, gerente[0].email);
+			getline(cin, gerente[i].email);
 			fflush(stdin);
 			cout << "Usuario : \n ";
-			gerente[0].usuario;
+			gerente[i].usuario;
 			cout << " Senha : \n";
-			gerente[0].senha;
-			
-			
-			
+			gerente[i].senha;
+					
+					break;
+					}
+					
+			case 2 :
 			
 			tipoC=c1.verificarTipo();
 			if(tipoC==1)
@@ -131,6 +195,25 @@ class Conta{
 			{
 				cout << "\n CONECTADO A CONTA POUPANÇA";
 			}
+			fflush(stdin);
+			system("pause");
+			cout << "informe Saldo :";
+			cin >> c1.saldo;
+			c1.saldo=saldoMain;
+			fflush(stdin);
+			system("pause");
+			int op;
+			cout << "\n \t Depositar 1 || \t Extrato 2 || \t saques - 0";
+			cin >> op;
+			switch(op){
+				case 1:
+					int dep;
+					t1.deposito = dep;
+					cout << "informe Valor Deposito";
+					cin >> dep;
+					t1.dDeposito(dep,c1.saldo)
+					
+			}
 			c1.emp;
 			cout << "\n Valor requisitado Emprestimo  : ";
 			cin >> c1.emp;
@@ -139,5 +222,13 @@ class Conta{
 			c1.empT=c1.defEmp(c1.emp,c1.m);
 			cout << "\n Emprestimo total : " << c1.empT;
 			fflush(stdin);
+			
+			c1.limiteT
+			
+			}
+			//Gerente 
+		
+			
+		
 			
 		}
