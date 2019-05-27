@@ -12,10 +12,11 @@ class Conta{
 	
 	private:
 		int pop, cot, popCot, id;
+		
 		//informacoes nao herdada, pois sao restritas para classe conta
 	public:
 		//seram herdadas pelas demais classes
-		string  numConta, agencia, lim,nomeGer, cliente; 
+		string  numConta, agencia, lim,nomeGer; 
 		float  n, j, emp, empT, saldo, limiteT,cc,cp, max;
 		int  idGer,m;
 	public:
@@ -25,17 +26,17 @@ class Conta{
 	if ((saldo >= 1.500)&&( saldo <1.750 ))
 	{
     limiteT = saldo*0.2+saldo; //VALOR DO limite
-    cout << "\nValor do Aumento em 20% para limite : \n%f",limiteT;
+    cout << "\nValor do Aumento em 20% para limite :\n" << limiteT;
 	}
 	else if ((saldo>=1.750)&&(saldo<2.000))
 	{
     limiteT= saldo*0.4+saldo; //VALOR DO lIMITE
-    cout <<"\nValor do Aumento em 40% para limite: \n%f",limiteT;
+    cout <<"\nValor do Aumento em 40% para limite: \n " << limiteT;
 	}
 	else if (saldo>=2.000)
 	{
     limiteT= saldo*0.5 + saldo; //VALOR DO Limite
-    cout << "\nValor do Aumento em 50 % para limite : \n%f", limiteT;
+    cout << "\nValor do Aumento em 50 % para limite : \n" << limiteT;
 	}
     return (limiteT);
 	}
@@ -103,13 +104,13 @@ class Conta{
 			
 			public:
 			int deposito, trans;
-			float credito, debito, extra, saques, st;
-			Conta cC;
+			float credito, debito, extra, saques, st, saldoD;
+			Conta c1;
 			public :
 				// definir credito cliente
 				//uso variavel herdada Conta
-			float	mCredito(limiteT,saldo){
-					if(c1.saldo <= 100)
+			float	mCredito(float, float){
+					if(saldo <= 100)
 					{
 						credito = limiteT*0.2;
 					}
@@ -125,25 +126,25 @@ class Conta{
 				}
 				//Definir debito
 				//variavel saldo herdada de conta
-			float	dDebito(saldo){
+			float	dDebito(float , float){
 					if(saldo==0)
 					{
-						debito=0;
+						cout << "debito insuficiente";
 					}
 					else{
-						debito=saldo;
+						saldoD= saldo - debito;
 					}
-					return(debito);
+					return(saldoD);
 				}
-			float	fSaques(saques, saldo){
+			float	fSaques(float, float){
 					//st = variavel recenbendo saldo total
 					//funcao saque de dinheiro
 					st = saques-saldo;
 					return(st);
 				}
 			// Funçao receber deposito e definir saldo total
-			int	dDeposito(deposito,saldo){
-					st = depoisto + saldo;
+			int	dDeposito(float, float){
+					st = deposito + saldo;
 					return(st);
 				}
 		};
@@ -153,68 +154,294 @@ class Conta{
 		{
 			Titular t1;
 			Conta c1;
-			int tipoC, g, gerente;
-			struct gerenteS{ string nome, email, usuario;
-			int senha,g, def;
-			float saldoMain;
+			char cliente,nome[nc][50],endereco[nc][60];
+			int nc,m,conta[nc],remover,y,opcao,op,op1,op2,sucesso,CPF[nc],agencia[nc],telefone[nc],conta[nc],credMax;
+			float saldoMain, saldo[nc],creditar,debitar,juros,transferencia,saldocomjuros;
 			
-			};
+			
+			
+		
+			
 			//Entrada do Programa
-			cout << "Bem - vindo BANCO";
+			
+			cout << "Bem - vindo BANCO \n";
+			cout << "Quantas contas voce Deseja Criar?\n";
+			cin >> nc;
+			system("cls");
 		 	system("pause");
+		 	
+			 j:
+		 	int def;	
 			cout << "\n \t Gerente 1 || \t Titular 2 || \t sair - 0";
 			cin >> def;
 			switch(def){
 				case 1:
-					{		
-			gerenteS gerente[3];
-			
-			gerente[i].g=c1.defIdGerente();
-			cout << "\n Numero Identificacao Gerente : \n " << gerente[0].g;
-			cout < " \n Nome Gerente : \n ";
-			getlne(cin,gerente[i].nome);
-			cout << "informe Email - Gerente\n ";
-			getline(cin, gerente[i].email);
-			fflush(stdin);
-			cout << "Usuario : \n ";
-			gerente[i].usuario;
-			cout << " Senha : \n";
-			gerente[i].senha;
-					
-					break;
-					}
-					
+					{
+						
+				}
 			case 2 :
-			
-			tipoC=c1.verificarTipo();
-			if(tipoC==1)
-			{
-				cout << "\n CONECTADO A CONTA CORRENTE \n";
-			}
-			else if(tipoC==2)
-			{
-				cout << "\n CONECTADO A CONTA POUPANÇA";
-			}
-			fflush(stdin);
-			system("pause");
-			cout << "informe Saldo :";
-			cin >> c1.saldo;
-			c1.saldo=saldoMain;
-			fflush(stdin);
-			system("pause");
+				{
+				
 			int op;
-			cout << "\n \t Depositar 1 || \t Extrato 2 || \t saques - 0";
-			cin >> op;
-			switch(op){
-				case 1:
-					int dep;
-					t1.deposito = dep;
-					cout << "informe Valor Deposito";
-					cin >> dep;
-					t1.dDeposito(dep,c1.saldo)
-					
-			}
-			c1.emp;
+				cout << 	"|----------------MENU---------------|\n";
+				cout << 	"|-------------PRINCIPAL-------------|\n";	
+				cout << 	"| <1> Criar Conta                   |\n";
+				cout << 	"| <2> Consultar Conta               |\n";
+				cout << 	"| <3> Remover Conta                 |\n";
+				cout << 	"| <4> Creditar                      |\n";
+				cout << 	"| <5> Debitar                       |\n";
+				cout << 	"| <6> Render Juros                  |\n";
+				cout << 	"| <7> Efetuar Transferência         |\n";
+				cout << 	"| <8> Listar Contas                 |\n";
+				cout << 	"| <9> Emprestimo	                 |\n";
+				cout << 	"| <0> Sair 		                 |\n";
+				cout << 	"|-----------------------------------|\n";
+				
+	
+	do{
+    
+	switch(opcao){
+    
+    
+      case 1:
+      cout << "Que tipo de conta você deseja Criar? \n";
+      cout << "1 - Conta Corrente\n 2 - Conta Poupança\n";
+      cin >> op1;
+      system("cls");
+    
+    
+    if(op1==1){
+      y++;    
+    conta[y]=y; 
+    
+    cout << "Crie sua CONTA CORRENTE!\n";
+    
+    cout << "Numero da conta --> %d\n\n" << conta[y];
+    cout << "Digite a agencia: \n";
+    cin >> agencia[y];
+    cout << "Digite o saldo: \n";
+    cin >> saldo[y];
+    cout << "Digite o nome: \n";
+    cin >> nome[y];
+    cout >> "Digite o CPF: \n";
+    cin >> CPF[y];
+    cout << "Digite o endereço: \n";
+    cin >> endereco[y];
+    cout << "Digite o telefone: \n";
+    cin >> telefone[y];
+    cout >>"|****************************|\n";
+    cout >>"|CONTA CRIADA COM SUCESSO!!!!|\n";
+    cout >>"|****************************|\n";
+	cout >>"voltar-0\n";
+    cin >> m;
+    system("cls");
+    goto j;
+    
+    }
+    else if(op1==2){
+    
+    cout << "Crie uma CONTA POUPANÇA! \n"
+    
+    cout << "Numero da conta --> %d\n\n",conta[y];
+    cout << "Digite a agencia: \n";
+    cin >> agencia[y];
+    cout << "Digite o saldo: \n";
+    cin >> saldo[y];
+    cout << "Digite o nome: \n";
+    cin >> nome[y];
+    cout >> "Digite o CPF: \n";
+    cin >> CPF[y];
+    cout << "Digite o endereço: \n";
+    cin >> endereco[y];
+    cout << "Digite o telefone: \n";
+    cin >> telefone[y];
+    cout >>"|****************************|\n";
+    cout >>"|CONTA CRIADA COM SUCESSO!!!!|\n";
+    cout >>"|****************************|\n";
+	cout >>"voltar-0\n";
+    cin >> m;
+    system("cls");
+    goto j;
+        }
+    
+    //VOLTAR AO MENU DE ORIGEM 
+    
+    case 2:
+    int a;  
+    cout << " Digite o Numero Da Conta: \n";
+    cin >> a;
+    system("cls");
+    
+    cout << "INFORMAÇOES INPORTANTES DA CONTA\n";
+    
+    cout << "Nome " << nome[a];
+    cout << "CPF: " << CPF[a];
+    cout << "ENDEREÇO "<< endereco[a];
+    cout << "TELEFONE: "<< telefone[a];
+    cout << "SALDO R$ = "<< saldo[a];
+    cout << "AGENCIA: t"<< agencia[a];
+    
+    printf("voltar-0\n");
+    cin >> m;
+    if(m==0){
+        goto j;
+    }
+    break;
+    
+    
+    case 3 :
+    
+    cout >> "***************REMOVER CONTA*******************";
+    cout >> "\n\nDigite quaquer numero para continuar...\n\n";
+    cin >> op2;
+    system("cls");           
+    cout << "Digite o número da conta\n";
+    cin >> conta[op2];
+    cout << "TEM CERTESA que desseja remover sua conta?";
+    cout << "\n \n 1-SIM 2-NAO \n\n";
+    cin >> remover;            
+     if (remover==1){
+        cout >> "Conta Removida com sucesso!!!\n";
+        system("cls");
+        goto j;
+    
+        }else {
+         system("cls");
+         goto j;
+    }
+    break;
+    
+    
+    case 4:
+    cout << "Digite o número da conta que queres CREDITAR: ";
+    cin >> op2;
+    cout << "Cliente : " << nome[op2];
+    cout << "Saldo R$ = \t"<< saldo[op2];
+    saldo[op2] = c1.saldo;
+    c1.limiteT;
+    maxCred=t1.mCredito(c1.limiteT,c1.saldo);
+    cout << "Valor Maximo Credito" << maxCred;
+    
+    cout << "Informe o valor a ser creditado\n\t: ";
+    cin >> creditar;
+    if(creditar < maxCred){
+    	
+    	saldo[op2]=saldo[op2]+creditar;  
+    	cout << "Saldo TOTAL É :  R$ =  "<<saldo[op2];
+    	cout << "\ncreditado com SUCESSO!!\n";
+    	
+	}else {
+		cout << "Valor insuficiente ";
+	}
+   
+    goto j;
+    break;
+    case 5:
+    int v;
+    cout << "Digite o número de sua conta a ser DEBITADA : ";
+    cin >> op2;
+    cout << "Nome : \n"<< nome[op2];
+    cout << "Saldo R$ = \t" << saldo[op2];
+      
+    cout << "Informe o valor a ser Debitado:\n\t: ";
+    cin >> debitar;
+    c1.saldo=saldo[op2];
+    t1.debito=debitar;
+    saldo[op2]=t1.dDebito(c1.saldo,t1.debito);
+    cout << "SALDO TOTAL É DE: R$ = \t" << saldo[op2];
+    cout << "\nDebitado com SUCESSO!!\n";
+    cout << "voltar-0\n";
+    cin >> v;
+    goto j;
+    break;
+    
+    
+    case 6:
+          
+    int q;  
+    float juros1,juros2;  
+   	cout <<"RENDER JUROS\n";
+      
+   cout <<"DIGITE O NUMERO DA CONTA PARA CALCULAR O JUROS\n";
+    cin >>a;
+    juros1=saldo[a]*0.10;
+    juros2=saldo[a]+(saldo[a]*0.10);
+      
+   cout <<"OPERACAO DISPONIVEL APENAS PARA CONTAS POUPANSA\n\n";
+   cout <<"CONTINUAR?\n\t1-SIM\n\t2-NAO\n";
+    cin >>q;
+      
+    if(q==1){
+       cout <<"VALOR DO  JUROS = \n" << juros1);
+       cout <<"VALOR DE SALDO COM JUROS = \n" << juros2;
+          
+   cout <<"voltar-0\n";
+    cout <<m;
+    if(m==0){
+        goto j;
+    }
+          
+    }
+    else if(q==2){
+       cout <<"INDISPONIVEL\n";
+          
+   cout <<"voltar-0\n";
+    cin >>m;
+    
+	if(m==0){
+        goto j;
+    }   
+    }
+      
+    break;
+      
+    
+    case  7:
+    
+ 	cout <<"Digite o número de conta para realizar a transferência: ";
+    cin >>op2;
+    system("cls");
+   cout <<"Saldo = \n Nome: \n" << saldo[op2]<< nome[op2];
+   cout <<"Informe o valor a ser transferido\n ";
+    cin >> transferencia;
+    saldo[op2]=saldo[op2]-transferencia;
+   cout <<"Seu saldo atual: \n"<<saldo[op2];
+   
+   cout <<"Digite o número da conta com o valor a receber a transferência: ";
+    cin >> op2;
+   cout <<"Saldo = %.2f\nNome: %s\n"<<saldo[op2]<<nome[op2];
+    saldo[op2]=saldo[op2]+transferencia;
+   cout <<"Realizada com SUCESSO\n";
+   cout <<"Saldo atual: \t "<< saldo[op2];    
+   
+    goto j;
+    
+    break;
+    
+    
+        case 8:
+       cout <<"LISTA DE CONTAS REALIZADAS\n";
+                   
+        for(op2=0;op2<nc;op2++){
+       cout <<"CONTA %d\n"<<conta[a];
+       cout <<"NOME %s\n"<<nome[a]);
+       cout <<"SALDO %f\n\n"<<saldo[a]);
+        }
+       cout <<"voltar-0\n");
+        cin >>m);
+        if(m==0){
+        goto j;
+        }
+    
+        break;
+ 		}
+ 		case 9:
+ 		{
+ 			int op6;
+ 			c1.emp;
+ 			cout <<"Digite o número de conta para realizar a emprestimo: ");
+    		cin << op2;
+    		
 			cout << "\n Valor requisitado Emprestimo  : ";
 			cin >> c1.emp;
 			cout << "\n Quantidade de Mes :";
@@ -222,13 +449,15 @@ class Conta{
 			c1.empT=c1.defEmp(c1.emp,c1.m);
 			cout << "\n Emprestimo total : " << c1.empT;
 			fflush(stdin);
-			
-			c1.limiteT
-			
+			cout << "\n Deseja efetuar emprestimo ? 1 - Sim || 2 - Nao ";
+			cin >> op6;
+			if (op6 == 1){
+				saldo[a]=saldo[a]+c1.emp;
 			}
-			//Gerente 
-		
-			
-		
-			
-		}
+	 }
+    
+            cout <<"SAINDO DO SISTEMA...Fim \n \n \n \n \n \n \n");
+            goto j;
+    	
+}while(opcao!=0); 
+			};
