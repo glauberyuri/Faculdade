@@ -128,7 +128,13 @@ class Conta{
 			float	dDebito(float , float){
 					if(saldo==0)
 					{
-						cout << "debito insuficiente";
+						cout << "debito insuficiente\n";
+						saldoD=0;
+					}
+					else if(saldo<=debito)
+					{
+						cout << "debito insuficiente\n";
+						saldoD=0;
 					}
 					else{
 						saldoD= saldo - debito;
@@ -147,8 +153,9 @@ class Conta{
 					return(st);
 				}
 		};
+		class Gerente : public Conta{
 		
-		
+		};
 		main()
 		{
 			Titular t1;
@@ -291,13 +298,11 @@ class Conta{
     
     
     case 3 :
-    
+    //removendo conta
     cout << "***************REMOVER CONTA*******************";
-    cout << "\n\nDigite quaquer numero para continuar...\n\n";
-    cin >> op2;
-    system("cls");           
     cout << "Digite o número da conta\n";
     cin >> conta[op2];
+     system("cls");  
     cout << "TEM CERTESA que dessewa remover sua conta?";
     cout << "\n \n 1-SIM 2-NAO \n\n";
     cin >> remover;            
@@ -314,10 +319,10 @@ class Conta{
 	  case 4:
        cout <<"LISTA DE CONTAS REALIZADAS\n";
                    
-        for(op2=0;op2<nc;op2++){
-       cout <<"CONTA \t"<<conta[op2]<<"\n";
-       cout <<"NOME \t"<<nome[op2]<<"\n";
-       cout <<"SALDO \t"<<saldo[op2]<<"\n";
+        for(op2=1;op2<nc;op2++){
+       cout <<"CONTA \t"<<conta[y]<<"\n";
+       cout <<"\n NOME \t"<<nome[y]<<"\n";
+       cout <<"\n SALDO \t"<<saldo[y]<<"\n";
         }
        cout <<"\n\tvoltar-0\t\n";
         cin >>m;
@@ -326,13 +331,13 @@ class Conta{
         }
         break;
        
-				default:
+		exit(0);
     		
 			cout <<"\n SAINDO DO SISTEMA...Fim  \n";
             goto w;
 	}
 	
-}while(opcao=!0);
+	}while(opcao=!0);
 	
 			case 2 :
 				
@@ -355,7 +360,8 @@ class Conta{
 				cin >> opcao;
 	
 	do{
-    
+    //faça enquando opcao do usuario seja 0 sair
+	//entrando com a opcao do usuario
 	switch(opcao)
 	{
     
@@ -366,11 +372,12 @@ class Conta{
       cin >> op1;
       system("cls");
     
-    
+    //condiçao conta
      if(op1==1){
-      y++;    
+    //incrementando valo vetor conta, salavando como numero da conta
+	  y++;    
     conta[y]=y; 
-    
+    //craindo conta cc
     cout << "Crie sua CONTA CORRENTE!\n";
     
     id[y]=t1.defId();
@@ -398,11 +405,13 @@ class Conta{
     goto j;
     
     }
+    //condiçao contas
     else if(op1==2){
-    
+    //incrementando valo vetor conta, salavando como numero da conta
  	 y++;    
     conta[y]=y; 
-    
+    //criando conta pp
+
     cout << "Crie uma CONTA POUPANÇA! \n";
   	id[y]=t1.defId();
     cout << "\tNumero de indentificaçao : " << id[y]<<"\n";
@@ -425,6 +434,7 @@ class Conta{
     cout <<"|****************************|\n";
 	cout <<"\nvoltar-0\t\n";
     cin >> m;
+    //sair
     system("cls");
     goto j;
         }
@@ -492,7 +502,7 @@ class Conta{
     if(creditar < maxCred){
     	
     	saldo[op2]=saldo[op2]+creditar;  
-    	cout << "Saldo TOTAL É :  R$ =  "<<saldo[op2];
+    	cout << "Saldo TOTAL É :  R$ =  "<< saldo[op2];
     	cout << "\ncreditado com SUCESSO!!\n";
     	
 	}else {
