@@ -1,0 +1,87 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string>
+#include<iostream>
+#include<locale.h>
+
+using namespace std;
+
+class Item{
+	public:
+	typedef struct{
+		float preco;
+		int id;
+		string desc;
+		string qualidade;
+		int idGrupo;
+	}cad; 
+	
+	cad item;
+	
+	
+	void ImprimirProduto(cad item)
+	{
+		cout <<  "Preço : /t "<<item.preco << "\n id : \t" << item.id << "\n Descricao :  \t"<< item.desc << "\n Qualidade : \t"<<item.qualidade <<"\n Grupo : \t" << item.idGrupo;  
+	}
+	
+	cad CriarProduto(float preco, int id, string desc, string qualidade, int idGrupo ){
+	
+	cad item;
+	item.preco = preco;
+	item.id = id;
+	item.desc = desc;
+	item.qualidade = qualidade;
+	item.idGrupo = idGrupo;
+	
+	return(item);
+	
+	}; 
+	
+	};
+	
+	int Main()
+	{
+		float preco; 
+		string desc, qualidade;
+		int op, id, idGrupo;
+		Item i;
+		
+		cout << "Deseja Criar um Produto : 1 - SIM \t || \t 2 - NÃO || 3 Listar Produtos \n";
+		cin >> op;
+		do{
+		switch(op)
+		{
+		case 1:
+			
+			cout << "------------------------------- Informe os dados ---------------------------- \n";
+			cout << "\n\n Preco :";
+			cin >> preco;
+			cout << "\n identificaçao produto :";
+			cin >> id;
+			cout << " \n descriçao :   ";
+			cin >> desc;
+			cout << " \n Qualidade Produto : ";
+			cin >> qualidade;
+			cout << " \n Grupo : ";
+			cin >> idGrupo;
+		  	
+		  	i.CriarProduto(preco, id, desc, qualidade, idGrupo);
+		  	
+			cout << "Cadastrado com Sucesso ";
+			break;
+		case 2:
+		
+			op=0;
+			break;
+			
+		case 3:
+			
+			i.ImprimirProduto(item);
+				
+		break;
+		default;
+		
+		}
+	 	}while(op=!0)	
+		}
+	
