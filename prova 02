@@ -5,70 +5,126 @@
 #include<locale.h>
 
 using namespace std;
-
-class Item{
-	public:
-	typedef struct{
+	
+		typedef struct{
 		float preco;
+		char nome[30];
 		int id;
 		string desc;
 		string qualidade;
+		int quantidade;
 		int idGrupo;
 	}cad; 
+class Funcionario  
+{
 	
-	cad item;
+	private:
+		int idFun;
+		string senha;
+		
+	public:
+		string nome;
+		int pItem;
+		float pPreco;
+	public :
 	
+	void alterarEstoque(int pItem, int pQuantidade) {
+  
+    item[pItem].quantidade = pQuantidade;
 	
-	void ImprimirProduto(cad item)
-	{
-		cout <<  "Preço : /t "<<item.preco << "\n id : \t" << item.id << "\n Descricao :  \t"<< item.desc << "\n Qualidade : \t"<<item.qualidade <<"\n Grupo : \t" << item.idGrupo;  
 	}
+	void modificarPreco(int pItem, float pPreco) {
+    
+	item[pItem].preco = pPreco;
 	
-	cad CriarProduto(float preco, int id, string desc, string qualidade, int idGrupo ){
-	
+	}
+};
+class Item : Funcionario{
+	public:
+		
 	cad item;
-	item.preco = preco;
-	item.id = id;
-	item.desc = desc;
-	item.qualidade = qualidade;
-	item.idGrupo = idGrupo;
 	
-	return(item);
+	public:
+
+	void listaProduto(int pQtProduto) {
+		
+    int i, qtProd;
+    
+    qtProd = pQtProduto;
+	    	
+		for (i = 0; i < qtProduto; i++) {
+	  	 	cout <<  "NOME : \t "<< item[cont].nome <<"\n" << "Preço : /t "<<item[cont].preco << "\n id : \t" << item[cont].id << "\n Descricao :  \t"<< item[cont].desc << "\n Qualidade : \t"<<item[cont].qualidade <<"\n Grupo : \t" << item[cont].idGrupo;  
+		 }
+	    
+	    fflush(stdout);
+		}
+		
 	
+	cad CriarProduto(){
+	
+		 	char opSup;
+		 	int cont =0, qtProdCad =0;
+		 	
+		 	do{
+			item[cont].id = cont;
+			fflush(stdin);
+			cout << "------------------------------- Informe os dados ---------------------------- \n";
+			cout <<" NOME PRODUTO : ";
+			getline(cin, item[cont].nome);
+			cout << "\n\n Preco :";
+			cin >> item[cont].preco;
+			cout << "\n identificaçao produto :";
+			cin >> item[cont].id;
+			cout << " \n descriçao :   ";
+			getline(cin, item[cont].desc);
+			cout << " \n Qualidade Produto : ";
+			cin >> item[cont].qualidade;
+			cout << " \n Grupo : ";
+			cin >> item[cont].idGrupo;
+		  	
+			  caixaAtual = caixaAtual - item[cont].preco;
+      		
+			  qtProdutoCad = qtProdCad + cont;
+        	
+			cont++;
+        
+		cout << "Deseja cadastrar um novo produto sim(s) ou não(n)?";
+        fflush(stdout);
+        getline(cin, opSup);
+        fflush(stdin);
+        
+  		  } while (opSub == 's' || opSub == 'S');
+  		  
+    	return qtProdCad;
+		
+	}
 	}; 
 	
 	};
 	
-	int Main()
+	int main()
 	{
+		Item it;
+		cad itV[i];	 
+		it.item;
+	 	int i;
 		float preco; 
 		string desc, qualidade;
 		int op, id, idGrupo;
-		Item i;
+		
 		
 		cout << "Deseja Criar um Produto : 1 - SIM \t || \t 2 - NÃO || 3 Listar Produtos \n";
 		cin >> op;
 		do{
+		
 		switch(op)
 		{
 		case 1:
 			
-			cout << "------------------------------- Informe os dados ---------------------------- \n";
-			cout << "\n\n Preco :";
-			cin >> preco;
-			cout << "\n identificaçao produto :";
-			cin >> id;
-			cout << " \n descriçao :   ";
-			cin >> desc;
-			cout << " \n Qualidade Produto : ";
-			cin >> qualidade;
-			cout << " \n Grupo : ";
-			cin >> idGrupo;
-		  	
-		  	i.CriarProduto(preco, id, desc, qualidade, idGrupo);
-		  	
-			cout << "Cadastrado com Sucesso ";
 			break;
+		}
+		
+			
 		case 2:
 		
 			op=0;
@@ -76,12 +132,16 @@ class Item{
 			
 		case 3:
 			
-			i.ImprimirProduto(item);
+			it.ImprimirProduto(it.item);
 				
 		break;
-		default;
+		
+		default:
+			break;
 		
 		}
-	 	}while(op=!0)	
+		
+	 	}while(op=!0);	
+	
 		}
 	
