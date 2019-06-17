@@ -1,88 +1,36 @@
 #include<stdio.h>
-#include<stdlib.h>
 #include<string>
 #include<iostream>
+#include<stdlib.h>
 #include<locale.h>
+#define QTREG 30
 
 using namespace std;
 	
-		typedef struct{
-		float preco;
-		char nome[30];
-		int id;
-		string desc;
-		string qualidade;
-		int quantidade;
-		int idGrupo;
-	}cad; 
-class Funcionario  
-{
 	
-	private:
-		int idFun;
-		string senha;
-		
-	public:
-		string nome;
-		int pItem;
-		float pPreco;
-	public :
-	
-	void alterarEstoque(int pItem, int pQuantidade) {
-  
-    item[pItem].quantidade = pQuantidade;
-	
-	}
-	void modificarPreco(int pItem, float pPreco) {
-    
-	item[pItem].preco = pPreco;
-	
-	}
-};
-class Item : Funcionario{
-	public:
-		
-	cad item;
-	
+	class Item : Funcionario{
+
 	public:
 
 	void listaProduto(int pQtProduto) {
 		
     int i, qtProd;
     
-    qtProd = pQtProduto;
-	    	
-		for (i = 0; i < qtProduto; i++) {
-	  	 	cout <<  "NOME : \t "<< item[cont].nome <<"\n" << "Preço : /t "<<item[cont].preco << "\n id : \t" << item[cont].id << "\n Descricao :  \t"<< item[cont].desc << "\n Qualidade : \t"<<item[cont].qualidade <<"\n Grupo : \t" << item[cont].idGrupo;  
-		 }
-	    
-	    fflush(stdout);
+
 		}
 		
 	
-	cad CriarProduto(){
+	int CriarProduto(){
 	
 		 	char opSup;
 		 	int cont =0, qtProdCad =0;
 		 	
 		 	do{
-			item[cont].id = cont;
+			item = cont;
 			fflush(stdin);
-			cout << "------------------------------- Informe os dados ---------------------------- \n";
-			cout <<" NOME PRODUTO : ";
-			getline(cin, item[cont].nome);
-			cout << "\n\n Preco :";
-			cin >> item[cont].preco;
-			cout << "\n identificaçao produto :";
-			cin >> item[cont].id;
-			cout << " \n descriçao :   ";
-			getline(cin, item[cont].desc);
-			cout << " \n Qualidade Produto : ";
-			cin >> item[cont].qualidade;
-			cout << " \n Grupo : ";
-			cin >> item[cont].idGrupo;
+	
 		  	
-			  caixaAtual = caixaAtual - item[cont].preco;
+			  caixaAtual = caixaAtual - preco;
       		
 			  qtProdutoCad = qtProdCad + cont;
         	
@@ -99,11 +47,97 @@ class Item : Funcionario{
 		
 	}
 	}; 
+class Funcionario  
+{
 	
-	};
+	private:
+		int idFun;
+		string senha;
+		
+	public:
+		string nome;
+		int cont;
+		float pPreco;
+	public :
+		
+		
+	float venda() {
+		
+    int pCodigo, qtd;
+    
+    float lucro = 0;
+    
+    char a;
+    
+    do{
+        cout <<"Informe o código do produto: ";
+        
+        fflush(stdout);
+        
+        cin >>cont;
+        
+        fflush(stdin);
+        
+        if (item[cont].quantidade < 0) {
+
+            cout <<"Produto indisponivel\n");
+            fflush(stdout);
+        } else {
+            cout <<"Informe a quantidade: ";
+            
+            fflush(stdout);
+            
+            cin >>qtd;
+            
+            fflush(stdin);
+            
+            cout <<"\tProduto: "<< item[cont].nome << " - \tQtdade: "<< qtd << "- \tPreço: "<< item[cont].preco << " - \tSubTotal: \t"<<item[cont].preco * qtd;
+       
+            fflush(stdout);
+            
+
+            lucro += item[cont].preco * qtd;
+            
+            item[cont].quantidade -= qtd;
+        }
+        cout <<"Informar novo item para a venda? (s/n) ";
+        
+        fflush(stdout);
+        
+        getline(cin,a);
+        
+    } while (a != 'n');
+
+
+    cout <<"\t\t\t Total:" << lucro);
+    
+    fflush(stdout);
+    
+    return lucro;
+    
+}
+	//FUNÇÃO AUMENTAR O ESTOQUE DE UM PRODUTO
 	
-	int main()
+	void alterarEstoque( pQuantidade) {
+  
+   quantidade = pQuantidade;
+	
+	}
+	//FUNÇÃO MODIFICAR O PREÇO DE UM PRODUTO
+
+	void modificarPreco( pPreco) {
+		
+    preco = pPreco;
+    
+	}
+};
+
+	
+
+	
+	i main()
 	{
+		Funcionario f1;
 		Item it;
 		cad itV[i];	 
 		it.item;
@@ -119,16 +153,46 @@ class Item : Funcionario{
 		
 		switch(op)
 		{
-		case 1:
+			int qtProduto;
+            float lucro;
+            
+		case 1:	//OPÇÃO CADASTRAR PRODUTO
+		
+            cout << "------------------------------- Informe os dados ---------------------------- \n";
+			cout <<" NOME PRODUTO : ";
+			getline(cin,nome);
+			cout << "\n\n Preco :";
+			cin >> preco;
+			cout << "\n identificaçao produto :";
+			cin >> id;
+			cout << " \n descriçao :   ";
+			getline(cin,desc);
+			cout << " \n Qualidade Produto : ";
+			cin >> qualidade;
+			cout << " \n Grupo : ";
+			cin >> idGrupo;
 			
-			break;
 		}
 		
 			
-		case 2:
-		
-			op=0;
-			break;
+	case 2:
+            {//OPÇÃO ATUALIZAR ESTOQUE
+            
+           
+                cout << " \t Digite o código do produto que deseja atualizar o estoque:";
+                fflush(stdout);
+                cin >> cont;
+                fflush(stdin);
+                cout << "\n Deseja alterar quantidade do produto: "<< nome <<"\t - quantidade:  \t" << qualidade;
+                cout << "\n Nova quantidade:";
+                fflush(stdout);
+                cin >> pQuantidade;
+                fflush(stdin);
+                system("pause");
+               f1.alterarEstoque(cont, pQuantidade);
+            }
+            
+		break;
 			
 		case 3:
 			
