@@ -4,6 +4,13 @@
 #include<string>
 #include<locale.h>
 #include<time.h>
+Documentação
+
+ No projeto foi utilizado polimorfismo, onde  classe caixa onde foi necessário um método, como também, esse mesmo método foi utilizado em outras classe derivadas.
+ laços de repetição para percorrer o vetor código em busca do dado pedido.
+Na questão de associação foi necessária, ao permitir que dados de um classe podessem ser utlilizados em outra. 
+Alguns classe foram definidas com alguns atributos privados, devido a demanda de dados sigilosos com senhas e etc.
+Encapsulamento foi usado, para que pudéssemos ter capacidade de ocultação de detalhes de implementação por parte de entidades de manipulação de dados, e produtos.
 
 using namespace std;
 
