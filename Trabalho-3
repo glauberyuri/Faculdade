@@ -1,0 +1,237 @@
+//Prova 01
+#include<iostream>
+#include<stdlib.h>
+#include<string>
+#include<locale.h>
+#include<time.h>
+
+using namespace std;
+
+//Class Veiculo
+class Carro {
+
+
+};
+
+
+class Motor : public Carro{
+	
+	public:
+	int consumo;
+
+    
+    public:
+    float mMotor(float velmedia){
+    	 
+	if(velmedia>=100){//consumo 10 km/l
+
+	consumo=10.0;
+	}
+	else{//consumo 8 km/l
+	
+	consumo=8.0;
+	}
+	return consumo;
+	}
+
+};
+
+//Classe Pneus, definir calibragem
+class Pneu: public Carro{
+	
+	private:
+	float lb;
+		
+	public:
+		//definição da calibração dos pneu
+	int mPressao(float atual,float cap){
+		
+			cout<<"\n\t\t--Calibrando pneu--\n\tQuantas libras? ";
+				cin>>lb;
+				
+				if(atual+lb<=cap && atual+lb>=0){
+					cout<<"\n\tCalibrado som sucesso.";
+					return(lb);
+				}else{
+					cout<<"\n\tNao eh possivel calibrar com essa quantidade de libras.";
+					return(0);
+				}
+				
+			}
+	
+};
+class Tanque : public Carro{
+	
+	public:
+		int abas;
+		float dpf;
+		
+		float abastecer(){
+			cout<<"\nCom quantos litros deseja abastecer? ";
+			cin>>abas;
+			return(abas);
+		}
+		int MostraGaso(float abaste,float total, float max){
+		if(abaste<=(max-total)){
+			cout<<"\n\tTanque : "<<abaste<<" ml. TOTAL : "<<total+abaste<<" ml.";
+		
+		return(1);
+		}else{
+			cout<<"\n Cheio!";
+		return(2);
+			}
+		}
+	
+	//distancia a ser percorrida = a da distancia total a ser percorrida menos
+	//valor da distância percorrida até o momento (= horas*velmedia)
+	int	distFinal(float velmedia, float distancia_total, float horas){
+			
+				dpf = distancia_total-(horas * velmedia);
+				
+				return (dpf);
+		}
+	int	mtanque(float tanquetotal, float distancia_total, float dpf, float consumo){
+		
+	//tanque restante é a diferença do tanque no início do trajeto e a
+	//quantidade em litros gasto na distancia percorrida até o momento
+	//distancia percorrida até o momento=(distancia_total-dpf)
+	//litros gastos nesta distância percorrida=distancia percorrida até o momento / consumo
+	
+	float tanque_restante=tanquetotal - ((distancia_total-dpf)/consumo);
+		
+		return (tanque_restante);
+	
+	}
+
+	
+};
+
+main(){
+	
+	Motor Omotor;
+	Pneu p1;
+	Tanque t1;
+	Carro c1;
+	float distancia_total,dpf ,caplb, consumo, horas, tanquetotal, tanque_restante, total=0, max, velmedia, atual, cap;
+	int motor_valor;
+    float tanque_total;
+    double autonomia;
+    
+		
+		cout << "Informe Status Motor 0-10:";
+		cin >> motor_valor;
+    
+		cout << "\nInforme a distancia total (em Km) a ser percorrida:\n";
+		cin >>distancia_total;
+	
+		
+		cout << "\nInforme a velocidade media do veiculo:(Km/h)\n";
+		cin >> velmedia;
+		
+		cout << "\n autonomia do carro :";
+		cin >> autonomia;
+	
+		cout<<"\n\tCapacidade maxima em libras que os pneus suportam: ";
+		cin>>caplb;
+		
+		cout << "\nAtual : ";
+		cin >> atual;
+	
+		cout << "Capacidade Total Gasolina : ";
+		cin >> max;
+		
+	int op; op=1;
+
+	while(op!=0){
+	
+				cout << 	"|----------------MENU---------------|\n";
+				cout << 	"|-------------Carro-----------------|\n";	
+				cout << 	"| <1> Andar                         |\n";
+				cout << 	"| <2> Abastecer                     |\n";
+				cout << 	"| <3> Encher Pneu                   |\n";
+				cout << 	"| <4> Informação                    |\n";
+				cout << 	"| <0> Sair 		                 |\n";
+				cout << 	"|-----------------------------------|\n";
+				cin >> op;
+		switch(op){
+		
+		case 0:
+		
+				op=0;
+
+		break;
+		
+			case 1:
+			int minutos;
+			
+			cout << "\nInforme o tempo gasto na viagem em minutos, ate o momento:\n";
+	
+			cin >> minutos;
+			fflush(stdin);
+			//cálculo das horas conforme os minutos
+				horas=(float)minutos/60;
+			// calculando distancia para fim	
+			
+			t1.distFinal(velmedia, distancia_total, horas)=dpf;
+			
+			tanque_total=t1.mtanque(tanquetotal,distancia_total,dpf,consumo);
+			
+			//caso haja distância para terminar o trajeto e volume de combustível restante no tanque
+		
+			if(dpf>0 & tanque_total>0){
+			
+			
+			break;// posso sair do loop while
+			}
+			else if (dpf<=0){// Já chegou ao final do trajeto
+			
+			cout << "\nDados inconsistentes, pois o destino teria sido alcancado neste tempo dado,distancia para o fim = \n\n\n"<<dpf<<"\n\n\n\n";
+			}
+		
+			else if(tanque_total<=0){// Acabou a gasolina no tanque
+			
+			cout << "\nDados inconsistentes, pois gasolina teria terminado, tanque restante = \n" << tanque_total<<"\n\n\n";
+		}
+
+						
+		break;
+			case 2:
+				int abaste;
+				int num;
+				cout<<"\n\t\tABASTECER VEICULO\n";
+				
+				abaste=t1.abastecer();
+				
+				num=t1.MostraGaso(abaste, total, max);
+				
+				if(num == 1){
+					cout << "Abastecido!!";
+				}else{
+					cout << "sem sucesso";
+				}
+				
+				
+		break;
+			case 3:
+		
+		float cal_total,a;
+		cout<< " \n\t Informe Calibragem maxima\n";
+		cin >> cap;
+		cout << " \n \tInforme Calibragem atual \n";
+		cin >> atual;
+		a=p1.mPressao(atual, cap);
+		if(a==0){
+			cout<< "Falha";
+		}else{
+			cout<< " Calibragem com sucesso\t :"<<a;
+		}
+		a=cal_total;
+				
+		break;
+			case 4:
+				cout<<"\n\n\t\tINFORMACOES ATUAIS DO VEICULO\n";
+				cout << "Valor Tanque : \t "<< tanque_total<< "\n Calibragem Atual : \t "<< cal_total <<"\n Motor : \t "<<motor_valor;
+			break;
+		};
+};
+}
