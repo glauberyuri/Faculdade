@@ -7,205 +7,265 @@
 
 using namespace std;
 	
-	
-	class Item : Funcionario{
 
-	public:
-
-	void listaProduto(int pQtProduto) {
-		
-    int i, qtProd;
-    
-
-		}
-		
-	
-	int CriarProduto(){
-	
-		 	char opSup;
-		 	int cont =0, qtProdCad =0;
-		 	
-		 	do{
-			item = cont;
-			fflush(stdin);
-	
-		  	
-			  caixaAtual = caixaAtual - preco;
-      		
-			  qtProdutoCad = qtProdCad + cont;
-        	
-			cont++;
-        
-		cout << "Deseja cadastrar um novo produto sim(s) ou não(n)?";
-        fflush(stdout);
-        getline(cin, opSup);
-        fflush(stdin);
-        
-  		  } while (opSub == 's' || opSub == 'S');
-  		  
-    	return qtProdCad;
-		
+class Item {
+public :
+	string nome;
+    float valor;
+    string qualidade;
+    float quantidade;
+public:
+    //cadastra um produto
+    int getCod(){
+    		int codigo;
+            cout << "informe Codigo do produdo : ";
+            cin >> codigo;
+            fflush(stdin);
+            return codigo;
 	}
-	}; 
-class Funcionario  
+	string getNome(){
+        system("cls");
+        //Pedimos nome e valor
+        cout << "Entre com o nome do produto: "; 
+        fflush(stdin);
+        getline(cin, nome);
+        return (nome);
+    }
+    float getValor(){
+    	
+		cout << "Entre com o valor do produto: "; 
+       fflush(stdin);
+        cin >> valor;
+        return(valor);
+	}
+       
+    string getQualidade(){
+	
+	 cout << "Entre com o qualidade do produto: "; 
+        string qualidade;
+        fflush(stdin);
+        getline(cin, qualidade);
+        return(qualidade);
+	}
+	
+       
+	float getQuantidade(){
+		
+		cout << "Entre com o quantidade do produto: "; 
+        float quantidade;
+        fflush(stdin);
+        cin >> quantidade;
+        
+	}
+    void imprimir(string nome, float valor, string qualidade, float quantidade){
+    	
+	 cout << "Produto: " << nome << "\t. Valor: " << valor <<"\t. Qualidade: " << qualidade << "\t  Quantidade: " << quantidade;   
+	 	
+	 }
+	
+};
+
+class  Funcionario : Item {
+	
+   
+	public:
+	Item it;
+    //Função inicial. Possue o menu
+  	virtual string getNome(){
+        system("cls");
+        //Pedimos nome e valor
+        cout << "Entre com o nome do Funcionario: "; 
+        fflush(stdin);
+        getline(cin, nome);
+        return (nome);
+    }
+    string getSenha(){
+    	string senha;
+    	cout << "Informe Senha :";
+    	getline(cin, senha);
+    	fflush(stdin);
+    	return senha;
+	}
+    
+    	//imprimir lista produtos
+    void listarProdutos(string nome, float valor){
+   
+    	cout << "Nome : \t " << nome << "\t valor : " << valor; 
+   	 }
+   
+ 	int venda() {
+ 			int codVendas;
+ 		
+		 codVendas=it.getCod();
+ 			
+            return codVendas;
+            
+        }
+};
+
+
+class Caixa : Item 
 {
 	
-	private:
-		int idFun;
-		string senha;
-		
-	public:
-		string nome;
-		int cont;
-		float pPreco;
 	public :
-		
-		
-	float venda() {
-		
-    int pCodigo, qtd;
-    
-    float lucro = 0;
-    
-    char a;
-    
-    do{
-        cout <<"Informe o código do produto: ";
-        
-        fflush(stdout);
-        
-        cin >>cont;
-        
-        fflush(stdin);
-        
-        if (item[cont].quantidade < 0) {
-
-            cout <<"Produto indisponivel\n");
-            fflush(stdout);
-        } else {
-            cout <<"Informe a quantidade: ";
-            
-            fflush(stdout);
-            
-            cin >>qtd;
-            
-            fflush(stdin);
-            
-            cout <<"\tProduto: "<< item[cont].nome << " - \tQtdade: "<< qtd << "- \tPreço: "<< item[cont].preco << " - \tSubTotal: \t"<<item[cont].preco * qtd;
-       
-            fflush(stdout);
-            
-
-            lucro += item[cont].preco * qtd;
-            
-            item[cont].quantidade -= qtd;
-        }
-        cout <<"Informar novo item para a venda? (s/n) ";
-        
-        fflush(stdout);
-        
-        getline(cin,a);
-        
-    } while (a != 'n');
-
-
-    cout <<"\t\t\t Total:" << lucro);
-    
-    fflush(stdout);
-    
-    return lucro;
-    
+		//FUNÇÃO AUMENTAR O ESTOQUE DE UM PRODUTO
+	void verificarItem(int cont){
+     
+		if(cont == 0){
+			cout << "não a produtos ";
+		}else{
+			cout << "Quantidades de produtos : "<< cont;
+		}
 }
-	//FUNÇÃO AUMENTAR O ESTOQUE DE UM PRODUTO
-	
-	void alterarEstoque( pQuantidade) {
-  
-   quantidade = pQuantidade;
-	
-	}
 	//FUNÇÃO MODIFICAR O PREÇO DE UM PRODUTO
-
-	void modificarPreco( pPreco) {
-		
-    preco = pPreco;
+	
+	float modificarValor() {
+	
+	float novoValor;
+    cout << "Informe novo Valor:";
     
+	 cin >> novoValor;
+   
+    return(novoValor);
+    
+	}
+	string modificarNome()
+	{
+		string novoNome;
+		cout << "informe novo nome";
+			
+		getline(cin,novoNome);
+		
+		return(novoNome);
+	}
+    virtual	void imprimirNovo(string nome, float valor)
+	{
+			 cout << "\n\n Produto: " << nome << "\t. Valor: " << valor;
 	}
 };
 
 	
 
 	
-	i main()
+	int main()
 	{
+		
+		int i; i=3;
+		int cod, op, id[i];
 		Funcionario f1;
-		Item it;
-		cad itV[i];	 
-		it.item;
-	 	int i;
-		float preco; 
-		string desc, qualidade;
-		int op, id, idGrupo;
+		Item lj;
+		Caixa c1;	
+		string nome[i], qualidade[i];
+		float valor[i],quantidade[i];
+		int cont; cont=0;
+	
 		
-		
-		cout << "Deseja Criar um Produto : 1 - SIM \t || \t 2 - NÃO || 3 Listar Produtos \n";
+		j:
+			
+		cout << "Deseja Criar um Produto - 1 \t || \t 2 Alterar || 3 -Vendas || 4 - Buscar \n";
 		cin >> op;
 		do{
 		
 		switch(op)
 		{
-			int qtProduto;
-            float lucro;
             
-		case 1:	//OPÇÃO CADASTRAR PRODUTO
-		
-            cout << "------------------------------- Informe os dados ---------------------------- \n";
-			cout <<" NOME PRODUTO : ";
-			getline(cin,nome);
-			cout << "\n\n Preco :";
-			cin >> preco;
-			cout << "\n identificaçao produto :";
-			cin >> id;
-			cout << " \n descriçao :   ";
-			getline(cin,desc);
-			cout << " \n Qualidade Produto : ";
-			cin >> qualidade;
-			cout << " \n Grupo : ";
-			cin >> idGrupo;
-			
-		}
-		
-			
-	case 2:
-            {//OPÇÃO ATUALIZAR ESTOQUE
+		case 1:	
+		p:
+				
+    	cout << " \n\n \t1 Cadastro de produto \n\n\t 2 Listar produtos \n\n\t 0 Sair \n opcao?: "; 
+        int opcao;
+		cin >> opcao;
+        
+	  	bool sair; sair = false;
+	  	
+	  	
+        while ( !sair ) {
+    
             
-           
-                cout << " \t Digite o código do produto que deseja atualizar o estoque:";
-                fflush(stdout);
-                cin >> cont;
-                fflush(stdin);
-                cout << "\n Deseja alterar quantidade do produto: "<< nome <<"\t - quantidade:  \t" << qualidade;
-                cout << "\n Nova quantidade:";
-                fflush(stdout);
-                cin >> pQuantidade;
-                fflush(stdin);
-                system("pause");
-               f1.alterarEstoque(cont, pQuantidade);
+            switch (opcao) {
+                
+                case 1:  
+                	id[cont]=lj.getCod();
+					nome[cont]=lj.getNome();
+					valor[cont]=lj.getValor();
+					qualidade[cont]=lj.getQualidade();
+					quantidade[cont]=lj.getQuantidade();
+					cont++;
+					goto p;
+				      break;
+                case 2:  
+                	for(i=0;i<cont;i++){
+                		
+                		lj.imprimir(nome[i],valor[i],qualidade[i],quantidade[i]);
+                		
+						if(cont=0){
+							cout << "Nao ha produtos para imprimir";
+						}
+					}
+					goto p;
+				    break;
+            
+                case 0:
+				 
+				 	sair = true;     
+				 	goto J;
+				    break;
+               
+			    default: cout<<"Invalido!";
+				 break;
             }
+        }
+     
+        
+        break;
+        
+		case 2:
+			
+            //OPÇÃO ATUALIZAR ESTOQUE
+             	cout << "\t\t\t_______________ALTERAR____________ \n\n\n";
+           	
+			   	cod=lj.getCod();
+           		for(i=0; i<cont; i++){
+           			
+           			if(id[i]==cod)
+           			{
+           			nome[i]=c1.modificarNome();
+           			valor[i]=c1.modificarValor();
+           			
+					   c1.imprimirNovo(nome[i], valor[i]);
+					}
+				   }
+            
             
 		break;
 			
 		case 3:
 			
-			it.ImprimirProduto(it.item);
+	
+    
 				
 		break;
+		case 4:
+			 	cout << "\n\n\t\t\t\_______________ BUSCA ______________ \n\n";
+				
+				c1.verificarItem(cont);
+				cod=lj.getCod();
+           		for(i=0; i<cont; i++){
+           			
+           			if(id[i]==cod)
+           			{
+           				
+           			lj.imprimir(nome[i],valor[i],qualidade[i],quantidade[i]);
+           			
+           			 }
+				   }
 		
 		default:
 			break;
 		
 		}
 		
-	 	}while(op=!0);	
+	 	}while(op!=0);	
 	
 		}
 	
